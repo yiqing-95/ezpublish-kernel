@@ -14,7 +14,7 @@
         </div>
         <hr />
         <div class="sf-toolbar-info-piece">
-            <b>{% if collector.legacyMode %}eZ Legacy Templates{% else %}eZ 5 Templates{% endif %}</b>
+            <b>{% if collector.legacyMode %}Legacy Templates{% else %}Twig Templates{% endif %} ({{ collector.templates.compact|length }})</b>
         </div>
         {% for tpl, count in collector.templates.compact|slice(0, 10) %}
         <div class="sf-toolbar-info-piece">
@@ -23,7 +23,7 @@
         {% endfor %}
         {% if collector.templates.compact|length > 10 %}
         <div class="sf-toolbar-info-piece">
-            <b>Please check profiler page for more ...</b>
+            <p>...</p>
         </div>
         {% endif %}
     {% endset %}

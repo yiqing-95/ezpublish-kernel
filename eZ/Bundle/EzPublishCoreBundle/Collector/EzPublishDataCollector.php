@@ -13,6 +13,7 @@ use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\HttpKernel\DataCollector\DataCollector;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+Use eZ\Bundle\EzPublishCoreBundle\Collector\TemplateDebugInfo;
 use eZ\Publish\Core\Persistence\Cache\PersistenceLogger;
 
 /**
@@ -33,6 +34,7 @@ class EzPublishDataCollector extends DataCollector
 
     /**
      * @param \eZ\Publish\Core\Persistence\Cache\PersistenceLogger $logger
+     * @param \Symfony\Component\DependencyInjection\ContainerInterface $container
      */
     public function __construct( PersistenceLogger $logger, ContainerInterface $container )
     {
@@ -51,15 +53,14 @@ class EzPublishDataCollector extends DataCollector
      */
     public function collect( Request $request, Response $response, \Exception $exception = null )
     {
-        $currentSA = $request->attributes->get( 'siteaccess' )->name;
-
+        $legacyMode = $this->container->get( 'ezpublish.config.resolver' )->getParameter( 'legacy_mode' );
         $this->data = array(
             'count' => $this->logger->getCount(),
             'calls_logging_enabled' => $this->logger->isCallsLoggingEnabled(),
             'calls' => $this->logger->getCalls(),
             'handlers' => $this->logger->getLoadedUnCachedHandlers(),
-            'templates' => $this->getTemplateList( $currentSA ),
-            'legacyMode' => $this->getIsLegacyMode( $currentSA )
+            'templates' => $this->getTemplateList( $legacyMode ),
+            'legacyMode' => $legacyMode
         );
     }
 
@@ -169,34 +170,21 @@ class EzPublishDataCollector extends DataCollector
     }
 
     /**
-     * Returns a boolean
-     *
-     * @param string $currentSA get current siteaccess name
-     *
-     * @return boolean
-     */
-    public function getIsLegacyMode( $currentSA )
-    {
-        return $this->container->getParameter( "ezsettings.$currentSA.legacy_mode" );
-    }
-
-    /**
      * Returns all templates loaded via eZ 5 stack or Legacy stack
      *
-     * @param String  $currentSA get current siteaccess name
+     * @param bool $legacyMode
      *
      * @return array
      */
-    public function getTemplateList( $currentSA )
+    public function getTemplateList( $legacyMode )
     {
-        $isLegacyMode = $this->getIsLegacyMode( $currentSA );
-        if ( $isLegacyMode )
+        if ( $legacyMode )
         {
-            $templateList = DebugKernel::getLegacyTemplatesList( $this->container );
+            $templateList = TemplateDebugInfo::getLegacyTemplatesList( $this->container );
         }
         else
         {
-            $templateList = DebugKernel::getTemplatesList();
+            $templateList = TemplateDebugInfo::getTemplatesList();
         }
         return $templateList;
     }

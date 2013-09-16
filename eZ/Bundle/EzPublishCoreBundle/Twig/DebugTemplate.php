@@ -9,17 +9,27 @@
 
 namespace eZ\Bundle\EzPublishCoreBundle\Twig;
 
-use eZ\Bundle\EzPublishCoreBundle\Collector\DebugKernel;
+use eZ\Bundle\EzPublishCoreBundle\Collector\TemplateDebugInfo;
 
+/**
+ * Abstract Class DebugTemplate
+ * @package eZ\Bundle\EzPublishCoreBundle\Twig
+ *
+ * Wraps Twig_Template to store debug info (only enabled in debug mode)
+ */
 abstract class DebugTemplate extends \Twig_Template
 {
+    /**
+     * @param array $context
+     * @param array $blocks
+     */
     public function display( array $context, array $blocks = array() )
     {
         $startTime = microtime( true );
         parent::display( $context, $blocks );
         $endTime = microtime( true );
 
-        DebugKernel::addTemplate( $this->getTemplateName(), $endTime - $startTime );
+        TemplateDebugInfo::addTemplate( $this->getTemplateName(), $endTime - $startTime );
     }
 
 }
