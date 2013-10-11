@@ -529,7 +529,7 @@ class Handler implements HandlerInterface
                                 ),
                                 new CriterionHandler\Visibility( $db ),
                                 new CriterionHandler\UserMetadata( $db ),
-                                new CriterionHandler\RelationList( $db ),
+                                new CriterionHandler\FieldRelation( $db ),
                             )
                         ),
                         new Content\Search\Gateway\SortClauseConverter(
