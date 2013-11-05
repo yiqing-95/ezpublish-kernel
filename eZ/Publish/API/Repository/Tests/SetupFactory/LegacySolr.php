@@ -210,6 +210,7 @@ class LegacySolr extends Legacy
                         new FieldValueMapper\IntegerMapper(),
                         new FieldValueMapper\DateMapper(),
                         new FieldValueMapper\PriceMapper(),
+                        new FieldValueMapper\BooleanMapper(),
                     )
                 ),
                 $persistenceHandler->contentHandler(),

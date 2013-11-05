@@ -389,6 +389,11 @@ class Handler implements SearchHandlerInterface
                 array_keys( $content->versionInfo->names ),
                 new FieldType\MultipleStringField()
             ),
+            new Field(
+                'always_available',
+                $content->versionInfo->contentInfo->alwaysAvailable,
+                new FieldType\BooleanField()
+            ),
         );
 
         if ( $mainLocation !== null )
