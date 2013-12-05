@@ -134,10 +134,19 @@ class Location extends RestController
      */
     public function loadLocation( $locationPath )
     {
+        $location = $this->locationService->loadLocation(
+            $this->extractLocationIdFromPath( $locationPath )
+        );
+
+        if ( trim( $location->pathString, '/' ) != $locationPath )
+        {
+            throw new Exceptions\NotFoundException(
+                "Could not find location with path string $locationPath"
+            );
+        }
+
         return new Values\RestLocation(
-            $location = $this->locationService->loadLocation(
-                $this->extractLocationIdFromPath( $locationPath )
-            ),
+            $location,
             $this->locationService->getLocationChildCount( $location )
         );
     }
