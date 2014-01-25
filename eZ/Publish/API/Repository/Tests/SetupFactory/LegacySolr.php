@@ -21,9 +21,9 @@ use eZ\Publish\Core\Persistence\Solr\Content\Search\FieldValueMapper;
 use eZ\Publish\Core\Persistence\Solr\Content\Search\SortClauseVisitor;
 use eZ\Publish\Core\Persistence\Solr\Slot;
 use eZ\Publish\Core\FieldType;
-use eZ\Publish\Core\SignalSlot\Repository as SignalSlotRepository;
-use eZ\Publish\Core\SignalSlot\SignalDispatcher\DefaultSignalDispatcher;
-use eZ\Publish\Core\SignalSlot\SlotFactory\GeneralSlotFactory;
+use eZ\Publish\Core\Repository\SignalSlot\Repository as SignalSlotRepository;
+use eZ\Publish\Core\Repository\SignalSlot\SignalDispatcher\DefaultSignalDispatcher;
+use eZ\Publish\Core\Repository\SignalSlot\SlotFactory\GeneralSlotFactory;
 use eZ\Publish\Core\Persistence\Legacy\Handler as LegacyPersistenceHandler;
 use eZ\Publish\Core\Persistence\Cache\Handler as CachePersistenceHandler;
 
@@ -85,21 +85,21 @@ class LegacySolr extends Legacy
                     )
                 ),
                 array(
-                    "eZ\\Publish\\Core\\SignalSlot\\Signal\\ContentService\\PublishVersionSignal" => array( "solr-publish-version" ),
-                    "eZ\\Publish\\Core\\SignalSlot\\Signal\\ContentService\\DeleteContentSignal" => array( "solr-delete-content" ),
-                    "eZ\\Publish\\Core\\SignalSlot\\Signal\\ContentService\\DeleteVersionSignal" => array( "solr-delete-version" ),
-                    "eZ\\Publish\\Core\\SignalSlot\\Signal\\ContentService\\CopyContentSignal" => array( "solr-copy-content" ),
-                    "eZ\\Publish\\Core\\SignalSlot\\Signal\\LocationService\\DeleteLocationSignal" => array( "solr-delete-location" ),
-                    "eZ\\Publish\\Core\\SignalSlot\\Signal\\LocationService\\CopySubtreeSignal" => array( "solr-copy-subtree" ),
-                    "eZ\\Publish\\Core\\SignalSlot\\Signal\\LocationService\\MoveSubtreeSignal" => array( "solr-move-subtree" ),
-                    "eZ\\Publish\\Core\\SignalSlot\\Signal\\LocationService\\HideLocationSignal" => array( "solr-hide-location" ),
-                    "eZ\\Publish\\Core\\SignalSlot\\Signal\\LocationService\\UnhideLocationSignal" => array( "solr-unhide-location" ),
-                    "eZ\\Publish\\Core\\SignalSlot\\Signal\\TrashService\\TrashSignal" => array( "solr-trash" ),
-                    "eZ\\Publish\\Core\\SignalSlot\\Signal\\TrashService\\RecoverSignal" => array( "solr-trash-recover" ),
-                    "eZ\\Publish\\Core\\SignalSlot\\Signal\\UserService\\CreateUserSignal" => array( "solr-create-user" ),
-                    "eZ\\Publish\\Core\\SignalSlot\\Signal\\UserService\\CreateUserGroupSignal" => array( "solr-create-user-group" ),
-                    "eZ\\Publish\\Core\\SignalSlot\\Signal\\UserService\\MoveUserGroupSignal" => array( "solr-move-user-group" ),
-                    "eZ\\Publish\\Core\\SignalSlot\\Signal\\ObjectStateService\\SetContentStateSignal" => array( "solr-set-content-state" ),
+                    "eZ\\Publish\\Core\\Repository\\SignalSlot\\Signal\\ContentService\\PublishVersionSignal" => array( "solr-publish-version" ),
+                    "eZ\\Publish\\Core\\Repository\\SignalSlot\\Signal\\ContentService\\DeleteContentSignal" => array( "solr-delete-content" ),
+                    "eZ\\Publish\\Core\\Repository\\SignalSlot\\Signal\\ContentService\\DeleteVersionSignal" => array( "solr-delete-version" ),
+                    "eZ\\Publish\\Core\\Repository\\SignalSlot\\Signal\\ContentService\\CopyContentSignal" => array( "solr-copy-content" ),
+                    "eZ\\Publish\\Core\\Repository\\SignalSlot\\Signal\\LocationService\\DeleteLocationSignal" => array( "solr-delete-location" ),
+                    "eZ\\Publish\\Core\\Repository\\SignalSlot\\Signal\\LocationService\\CopySubtreeSignal" => array( "solr-copy-subtree" ),
+                    "eZ\\Publish\\Core\\Repository\\SignalSlot\\Signal\\LocationService\\MoveSubtreeSignal" => array( "solr-move-subtree" ),
+                    "eZ\\Publish\\Core\\Repository\\SignalSlot\\Signal\\LocationService\\HideLocationSignal" => array( "solr-hide-location" ),
+                    "eZ\\Publish\\Core\\Repository\\SignalSlot\\Signal\\LocationService\\UnhideLocationSignal" => array( "solr-unhide-location" ),
+                    "eZ\\Publish\\Core\\Repository\\SignalSlot\\Signal\\TrashService\\TrashSignal" => array( "solr-trash" ),
+                    "eZ\\Publish\\Core\\Repository\\SignalSlot\\Signal\\TrashService\\RecoverSignal" => array( "solr-trash-recover" ),
+                    "eZ\\Publish\\Core\\Repository\\SignalSlot\\Signal\\UserService\\CreateUserSignal" => array( "solr-create-user" ),
+                    "eZ\\Publish\\Core\\Repository\\SignalSlot\\Signal\\UserService\\CreateUserGroupSignal" => array( "solr-create-user-group" ),
+                    "eZ\\Publish\\Core\\Repository\\SignalSlot\\Signal\\UserService\\MoveUserGroupSignal" => array( "solr-move-user-group" ),
+                    "eZ\\Publish\\Core\\Repository\\SignalSlot\\Signal\\ObjectStateService\\SetContentStateSignal" => array( "solr-set-content-state" ),
                 )
             )
         );
