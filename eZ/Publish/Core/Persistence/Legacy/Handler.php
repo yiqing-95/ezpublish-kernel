@@ -696,7 +696,7 @@ class Handler implements HandlerInterface
     }
 
     /**
-     * @return \eZ\Publish\SPI\Persistence\Content\Location\SearchHandler
+     * @return \eZ\Publish\SPI\Persistence\Content\Location\Search\Handler
      */
     public function locationSearchHandler()
     {

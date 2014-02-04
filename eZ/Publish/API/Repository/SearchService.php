@@ -30,11 +30,10 @@ interface SearchService
      * @param \eZ\Publish\API\Repository\Values\Content\Query $query
      * @param array $fieldFilters - a map of filters for the returned fields.
      *        Currently supported: <code>array("languages" => array(<language1>,..))</code>.
-     * @param boolean $filterOnUserPermissions if true only the objects which is the user allowed to read are returned.
      *
      * @return \eZ\Publish\API\Repository\Values\Content\Search\SearchResult
      */
-    public function findContent( Query $query, array $fieldFilters = array(), $filterOnUserPermissions = true );
+    public function findContent( Query $query, array $fieldFilters = array() );
 
     /**
      * Performs a query for a single content object
@@ -47,11 +46,10 @@ interface SearchService
      * @param \eZ\Publish\API\Repository\Values\Content\Query\Criterion $filter
      * @param array $fieldFilters - a map of filters for the returned fields.
      *        Currently supported: <code>array("languages" => array(<language1>,..))</code>.
-     * @param boolean $filterOnUserPermissions if true only the objects which is the user allowed to read are returned.
      *
      * @return \eZ\Publish\API\Repository\Values\Content\Content
      */
-    public function findSingle( Criterion $filter, array $fieldFilters = array(), $filterOnUserPermissions = true );
+    public function findSingle( Criterion $filter, array $fieldFilters = array() );
 
     /**
      * Suggests a list of values for the given prefix
